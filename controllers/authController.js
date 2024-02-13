@@ -82,6 +82,9 @@ export const logout = async (req, res) => {
 };
 
 export const updateAvatar = async (req, res) => {
+	if (!req.file) {
+		return res.status(400).json({ error: "Please provide a file" });
+	}
 	const { _id } = req.user;
 	const { path: tempUpload, originalname } = req.file;
 
